@@ -30,10 +30,34 @@ function Book(t, a, p, r) {
 }
 
 function addToLaibrary() {
-  myLibrary.push(Book());
+  let title = document.querySelector('#bookTitle').value;
+  let author = document.querySelector('#bookAuthor').value;
+  let pages = document.querySelector('#bookPages').value;
+  let read = document.querySelector('#read').value;
+  myLibrary.push(new Book(title, author, pages, true));
 }
 
 // UI
+
+// render book in library
+function randerBooks(my) {
+  my.map((book) => {
+    console.log(book);
+    let card = document.createElement('div');
+    card.classList.add('book');
+    document
+      .querySelector('.library')
+      .insertAdjacentElement('afterbegin', card);
+  });
+}
+
+// remove duplication
+function removeDuplication() {
+  let books = document.querySelectorAll('.book');
+  books.forEach((element) => {
+    element.remove();
+  });
+}
 
 // open and close form function
 let popUpForm = document.querySelector('.popupForm');
@@ -45,4 +69,14 @@ popUpForm.addEventListener('click', () => {
 });
 closForm.addEventListener('click', () => {
   document.querySelector('.popup').style.display = 'none';
+});
+
+//add form input to library
+let addBook = document.querySelector('.addBtn');
+
+addBook.addEventListener('click', () => {
+  removeDuplication();
+  addToLaibrary();
+  document.querySelector('.popup').style.display = 'none';
+  randerBooks(myLibrary);
 });
