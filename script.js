@@ -45,11 +45,23 @@ function randerBooks(my) {
     console.log(book);
     let card = document.createElement('div');
     card.classList.add('book');
+    card.innerHTML = `<h2 class="title">${book.title}</h2>
+    <h2 class="author">${book.author}</h2>
+    <h2 class="pages">${book.pages}</h2>
+    <div>
+      <label class="switch">
+        <input type="checkbox" id="switch" />
+        <span class="slider"></span>
+      </label>
+    </div>`;
     document
       .querySelector('.library')
       .insertAdjacentElement('afterbegin', card);
   });
 }
+
+// render existing book
+randerBooks(myLibrary);
 
 // remove duplication
 function removeDuplication() {
