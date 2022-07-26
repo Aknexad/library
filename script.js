@@ -2,21 +2,22 @@
 
 let myLibrary = [
   {
-    title: 'lord of the rings',
-    author: 'j.j taking',
-    pages: 745,
+    title: 'Clean Code',
+    author: 'Robert Cecil Martin',
+    pages: 202,
+    read: true,
+  },
+  {
+    title: 'The Pragmatic Programmer',
+    author: 'Andy Hunt and Dave Thomas',
+    pages: 123,
     read: false,
   },
   {
-    title: 'lord of the rings',
-    author: 'j.j taking',
-    pages: 745,
-    read: false,
-  },
-  {
-    title: 'lord of the rings',
-    author: 'j.j taking',
-    pages: 745,
+    title: 'Introduction to Algorithms',
+    author:
+      'Thomas H. Cormen, Charles E. Leiserson, Ronald Rivest, Clifford Stein',
+    pages: 234,
     read: false,
   },
 ];
@@ -45,15 +46,10 @@ function randerBooks(my) {
     console.log(book);
     let card = document.createElement('div');
     card.classList.add('book');
-    card.innerHTML = `<h2 class="title">${book.title}</h2>
+    card.innerHTML = `
+    <h2 class="title">${book.title}</h2>
     <h2 class="author">${book.author}</h2>
-    <h2 class="pages">${book.pages}</h2>
-    <div>
-      <label class="switch">
-        <input type="checkbox" id="switch" />
-        <span class="slider"></span>
-      </label>
-    </div>`;
+    <h2 class="pages">${book.pages}</h2>`;
     document
       .querySelector('.library')
       .insertAdjacentElement('afterbegin', card);
