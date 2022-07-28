@@ -6,12 +6,14 @@ let myLibrary = [
     author: 'Robert Cecil Martin',
     pages: 202,
     read: true,
+    id: randomId(),
   },
   {
     title: 'The Pragmatic Programmer',
     author: 'Andy Hunt and Dave Thomas',
     pages: 123,
     read: false,
+    id: randomId(),
   },
   {
     title: 'Introduction to Algorithms',
@@ -19,6 +21,7 @@ let myLibrary = [
       'Thomas H. Cormen, Charles E. Leiserson, Ronald Rivest, Clifford Stein',
     pages: 234,
     read: false,
+    id: randomId(),
   },
 ];
 
@@ -26,8 +29,8 @@ function Book(t, a, p, r) {
   (this.title = t),
     (this.author = a),
     (this.pages = p),
-    this,
-    (read = r);
+    (this.read = r);
+  this.id = randomId();
 }
 
 function addToLaibrary() {
@@ -36,6 +39,14 @@ function addToLaibrary() {
   let pages = document.querySelector('#bookPages').value;
   let read = document.querySelector('#read').value;
   myLibrary.push(new Book(title, author, pages, true));
+}
+
+// generate unique id
+function randomId() {
+  const uint32 = window.crypto.getRandomValues(
+    new Uint32Array(1)
+  )[0];
+  return uint32.toString(16);
 }
 
 // UI
@@ -49,7 +60,7 @@ function randerBooks(my) {
     <h2 class="title">${book.title}</h2>
     <h2 class="author">${book.author}</h2>
     <h2 class="pages">${book.pages}</h2>
-    <button type="button" class="removeBtn">
+    <button type="button" id='${book.id}'>
     remove
   </button>`;
     document
@@ -78,20 +89,21 @@ function deletBook(di) {
 }
 
 //event listener for delet book
+console.log(myLibrary);
 
-let deletBtn = document.querySelectorAll('.removeBtn');
-deletBtn.forEach((element) => {
-  element.addEventListener('click', () => {
-    let deleteItem =
-      element.parentElement.children[0].textContent;
-    console.log('start');
-    deletBook(deleteItem);
-    removeDuplication();
-    randerBooks(myLibrary);
-    console.log('finish');
-    console.log(deletBtn);
-  });
-});
+// let deletBtn = document.querySelectorAll('.removeBtn');
+// deletBtn.forEach((element) => {
+//   element.addEventListener('click', () => {
+//     let deleteItem =
+//       element.parentElement.children[0].textContent;
+
+//     deletBook(deleteItem);
+//     removeDuplication();
+//     randerBooks(myLibrary);
+//     console.log(document.querySelectorAll('.removeBtn'));
+//     console.log(Date());
+//   });
+// });
 
 // open and close form function
 let popUpForm = document.querySelector('.popupForm');
