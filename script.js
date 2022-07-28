@@ -43,13 +43,15 @@ function addToLaibrary() {
 // render book in library
 function randerBooks(my) {
   my.map((book) => {
-    console.log(book);
     let card = document.createElement('div');
     card.classList.add('book');
     card.innerHTML = `
     <h2 class="title">${book.title}</h2>
     <h2 class="author">${book.author}</h2>
-    <h2 class="pages">${book.pages}</h2>`;
+    <h2 class="pages">${book.pages}</h2>
+    <button type="button" class="removeBtn">
+    remove
+  </button>`;
     document
       .querySelector('.library')
       .insertAdjacentElement('afterbegin', card);
@@ -66,6 +68,30 @@ function removeDuplication() {
     element.remove();
   });
 }
+
+// delet book form library
+function deletBook(di) {
+  let indexNum = myLibrary.findIndex(
+    (element) => element.title === di
+  );
+  myLibrary.splice(indexNum, 1);
+}
+
+//event listener for delet book
+
+let deletBtn = document.querySelectorAll('.removeBtn');
+deletBtn.forEach((element) => {
+  element.addEventListener('click', () => {
+    let deleteItem =
+      element.parentElement.children[0].textContent;
+    console.log('start');
+    deletBook(deleteItem);
+    removeDuplication();
+    randerBooks(myLibrary);
+    console.log('finish');
+    console.log(deletBtn);
+  });
+});
 
 // open and close form function
 let popUpForm = document.querySelector('.popupForm');
