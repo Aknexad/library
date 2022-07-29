@@ -164,3 +164,17 @@ div > input {
   border: 2px solid wheat;
   border-radius: 10px;
 }
+
+.removeBtn {
+  background-color: var(--third-color);
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 30px;
+}
+
+.read {
+  background-color: var(--third-color);
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 30px;
+}
