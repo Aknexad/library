@@ -61,17 +61,37 @@ function randerBooks(my) {
     <h2 class="title">${book.title}</h2>
     <h2 class="author">${book.author}</h2>
     <h2 class="pages">${book.pages}</h2>
-    <div class = 'btn'>
+    <div class = 'cardBtn'>
       <button type="button" id='${book.id}' class='removeBtn'>
-      remove
+      REMOVE
       </button>
-      <button type="button"' class='read'>
-      read
+      <button type="button" class='readBtn ${book.id}'>
+      READ
       </button>
     </div>  `;
     document
       .querySelector('.library')
       .insertAdjacentElement('afterbegin', card);
+
+    // change read
+    let read = document.getElementsByClassName(book.id);
+    read[0].onclick = (e) => {
+      if (book.read === true) {
+        book.read = false;
+        randerBooks(myLibrary);
+      } else {
+        book.read = true;
+      }
+      randerBooks(myLibrary);
+    };
+    // read or not
+    if (book.read === true) {
+      let a = document.getElementsByClassName(book.id);
+      a[0].style.backgroundColor = 'green';
+    } else {
+      let b = document.getElementsByClassName(book.id);
+      b[0].style.backgroundColor = 'red';
+    }
     // remove book form library
     let removeBtn = document.getElementById(book.id);
     removeBtn.onclick = (e) => {
