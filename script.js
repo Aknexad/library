@@ -53,6 +53,7 @@ function randomId() {
 
 // render book in library
 function randerBooks(my) {
+  removeDuplication();
   my.map((book) => {
     let card = document.createElement('div');
     card.classList.add('book');
@@ -60,12 +61,23 @@ function randerBooks(my) {
     <h2 class="title">${book.title}</h2>
     <h2 class="author">${book.author}</h2>
     <h2 class="pages">${book.pages}</h2>
-    <button type="button" id='${book.id}'>
-    remove
-  </button>`;
+    <div class = 'btn'>
+      <button type="button" id='${book.id}' class='removeBtn'>
+      remove
+      </button>
+      <button type="button"' class='read'>
+      read
+      </button>
+    </div>  `;
     document
       .querySelector('.library')
       .insertAdjacentElement('afterbegin', card);
+    // remove book form library
+    let removeBtn = document.getElementById(book.id);
+    removeBtn.onclick = (e) => {
+      deletBook(e.target.id, myLibrary);
+      randerBooks(myLibrary);
+    };
   });
 }
 
@@ -81,29 +93,12 @@ function removeDuplication() {
 }
 
 // delet book form library
-function deletBook(di) {
+function deletBook(di, myLibrary) {
   let indexNum = myLibrary.findIndex(
-    (element) => element.title === di
+    (element) => element.id === di
   );
   myLibrary.splice(indexNum, 1);
 }
-
-//event listener for delet book
-console.log(myLibrary);
-
-// let deletBtn = document.querySelectorAll('.removeBtn');
-// deletBtn.forEach((element) => {
-//   element.addEventListener('click', () => {
-//     let deleteItem =
-//       element.parentElement.children[0].textContent;
-
-//     deletBook(deleteItem);
-//     removeDuplication();
-//     randerBooks(myLibrary);
-//     console.log(document.querySelectorAll('.removeBtn'));
-//     console.log(Date());
-//   });
-// });
 
 // open and close form function
 let popUpForm = document.querySelector('.popupForm');
@@ -121,7 +116,6 @@ closForm.addEventListener('click', () => {
 let addBook = document.querySelector('.addBtn');
 
 addBook.addEventListener('click', () => {
-  removeDuplication();
   addToLaibrary();
   document.querySelector('.popup').style.display = 'none';
   randerBooks(myLibrary);
