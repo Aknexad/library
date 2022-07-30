@@ -90,7 +90,7 @@ function randerBooks(my) {
     // read or not
     if (book.read === true) {
       let a = document.getElementsByClassName(book.id);
-      a[0].style.backgroundColor = 'green';
+      a[0].style.backgroundColor = 'blue';
     } else {
       let b = document.getElementsByClassName(book.id);
       b[0].style.backgroundColor = 'red';
@@ -123,6 +123,20 @@ function deletBook(di, myLibrary) {
   myLibrary.splice(indexNum, 1);
 }
 
+// input checkbox true or false
+function inputCack() {
+  let read = document.querySelector('#read').value;
+  let chackbox = document.querySelector('#read');
+  chackbox.addEventListener('click', (e) => {
+    let a = document.querySelector('#read').value;
+    if (a === 'false') {
+      e.target.value = 'true';
+    } else {
+      e.target.value = 'false';
+    }
+  });
+}
+
 // open and close form function
 let popUpForm = document.querySelector('.popupForm');
 let closForm = document.querySelector('.closeBtn');
@@ -143,17 +157,3 @@ addBook.addEventListener('click', () => {
   document.querySelector('.popup').style.display = 'none';
   randerBooks(myLibrary);
 });
-
-// input checkbox true or false
-function inputCack() {
-  let read = document.querySelector('#read').value;
-  let chackbox = document.querySelector('#read');
-  chackbox.addEventListener('click', (e) => {
-    let a = document.querySelector('#read').value;
-    if (a === 'false') {
-      e.target.value = 'true';
-    } else {
-      e.target.value = 'false';
-    }
-  });
-}
