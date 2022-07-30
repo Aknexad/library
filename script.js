@@ -38,7 +38,9 @@ function addToLaibrary() {
   let author = document.querySelector('#bookAuthor').value;
   let pages = document.querySelector('#bookPages').value;
   let read = document.querySelector('#read').value;
-  myLibrary.push(new Book(title, author, pages, true));
+  myLibrary.push(
+    new Book(title, author, pages, JSON.parse(read))
+  );
 }
 
 // generate unique id
@@ -72,7 +74,8 @@ function randerBooks(my) {
     document
       .querySelector('.library')
       .insertAdjacentElement('afterbegin', card);
-
+    //input
+    inputCack();
     // change read
     let read = document.getElementsByClassName(book.id);
     read[0].onclick = (e) => {
@@ -140,3 +143,17 @@ addBook.addEventListener('click', () => {
   document.querySelector('.popup').style.display = 'none';
   randerBooks(myLibrary);
 });
+
+// input checkbox true or false
+function inputCack() {
+  let read = document.querySelector('#read').value;
+  let chackbox = document.querySelector('#read');
+  chackbox.addEventListener('click', (e) => {
+    let a = document.querySelector('#read').value;
+    if (a === 'false') {
+      e.target.value = 'true';
+    } else {
+      e.target.value = 'false';
+    }
+  });
+}
