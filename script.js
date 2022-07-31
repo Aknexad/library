@@ -1,29 +1,6 @@
 //data
 
-let myLibrary = [
-  {
-    title: 'Clean Code',
-    author: 'Robert Cecil Martin',
-    pages: 202,
-    read: true,
-    id: randomId(),
-  },
-  {
-    title: 'The Pragmatic Programmer',
-    author: 'Andy Hunt and Dave Thomas',
-    pages: 123,
-    read: false,
-    id: randomId(),
-  },
-  {
-    title: 'Introduction to Algorithms',
-    author:
-      'Thomas H. Cormen, Charles E. Leiserson, Ronald Rivest, Clifford Stein',
-    pages: 234,
-    read: false,
-    id: randomId(),
-  },
-];
+let myLibrary = [];
 
 function Book(t, a, p, r) {
   (this.title = t),
