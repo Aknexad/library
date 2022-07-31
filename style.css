@@ -52,14 +52,7 @@ body {
 }
 
 .popupForm:hover {
-  background: rgb(0, 0, 0);
-  background: linear-gradient(
-    138deg,
-    rgba(6, 40, 61, 0.30325633671437324) 20%,
-    rgba(255, 255, 255, 0.7794468129048494) 50%,
-    rgba(6, 40, 61, 0.23883056640625) 80%
-  );
-  color: var(--secondary-color);
+  box-shadow: 4px 8px 16px black;
 }
 
 .book {
